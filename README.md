@@ -377,46 +377,34 @@ A dataset can pass statistical tests and still be unsuitable for cryptographic a
 
 ## Project Structure
 
-The intended project organisation is:
-
 ```text
 QubitKey/
-│
 ├── backend/
-│   ├── api/
-│   ├── quantum/
-│   ├── analysis/
-│   ├── authentication/
-│   ├── services/
-│   ├── main.py
-│   └── requirements.txt
-│
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── schemas/
+│   │   ├── quantum/
+│   │   ├── analysis/
+│   │   ├── security/
+│   │   └── main.py
+│   ├── tests/
+│   └── pyproject.toml
 ├── frontend/
 │   ├── src/
+│   │   ├── api/
 │   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   └── charts/
+│   │   └── pages/
 │   └── package.json
-│
 ├── notebooks/
-│   └── qrng_experiments.ipynb
-│
+│   └── qrng_experiment.ipynb
 ├── docs/
-│   ├── PRODUCT_SPEC.md
-│   ├── ARCHITECTURE.md
-│   └── METHODOLOGY.md
-│
-├── tests/
-│
+├── prompts/
 ├── AGENTS.md
 ├── README.md
 ├── LICENSE
 └── .gitignore
 ```
-
-The final repository structure may evolve as implementation progresses.
 
 ---
 
@@ -426,37 +414,37 @@ The final repository structure may evolve as implementation progresses.
 
 - [x] Define the Qiskit-based QRNG concept.
 - [x] Establish the quantum measurement methodology.
-- [ ] Implement configurable quantum circuit execution.
-- [ ] Support repeated measurements.
-- [ ] Add experiment export.
+- [x] Implement configurable quantum circuit execution.
+- [x] Support repeated measurements.
+- [x] Add experiment export.
 
 ### Phase 2: Entropy Observatory
 
-- [ ] Implement statistical analysis.
-- [ ] Add interactive distribution visualisations.
-- [ ] Compare quantum and classical randomness sources.
-- [ ] Document experimental limitations.
+- [x] Implement statistical analysis.
+- [x] Add interactive distribution visualisations.
+- [x] Compare quantum and classical randomness sources.
+- [x] Document experimental limitations.
 
 ### Phase 3: Digital Authentication
 
-- [ ] Implement TOTP enrollment.
-- [ ] Generate provisioning QR codes.
-- [ ] Implement code verification.
-- [ ] Add authentication security controls.
+- [x] Implement TOTP enrollment.
+- [x] Generate provisioning QR codes.
+- [x] Implement code verification.
+- [x] Add authentication security controls.
 
 ### Phase 4: Hardware Integration
 
-- [ ] Integrate IBM Quantum Runtime.
-- [ ] Support physical QPU execution.
-- [ ] Record backend metadata and experiment provenance.
-- [ ] Compare simulator and hardware measurements.
+- [x] Integrate IBM Quantum Runtime adapter (opt-in).
+- [x] Support physical QPU execution when credentials are configured.
+- [x] Record backend metadata and experiment provenance.
+- [x] Compare simulator and classical baselines (hardware when available).
 
 ### Phase 5: Post-Quantum Exploration
 
-- [ ] Evaluate a maintained ML-DSA implementation.
-- [ ] Build an isolated signature demonstration.
-- [ ] Document key generation, signing, and verification.
-- [ ] Explain the relationship between quantum computing and post-quantum cryptography.
+- [x] Evaluate a maintained ML-DSA implementation (`cryptography`).
+- [x] Build an isolated signature demonstration.
+- [x] Document key generation, signing, and verification.
+- [x] Explain the relationship between quantum computing and post-quantum cryptography.
 
 ---
 
