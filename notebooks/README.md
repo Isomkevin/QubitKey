@@ -1,0 +1,69 @@
+# QubitKey Research Notebooks
+
+Standalone Qiskit experiments for QubitKey. These notebooks do **not** require the FastAPI backend or React frontend.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `qrng_experiments.ipynb` | Full Hadamard QRNG research notebook |
+| `qrng_lab.py` | Circuit, conversion, Aer runner, and statistics helpers |
+| `requirements.txt` | Pinned notebook dependencies |
+
+## Quick start
+
+From the repository root (Python 3.11+):
+
+```powershell
+python -m venv .venv-notebook
+.\.venv-notebook\Scripts\Activate.ps1
+python -m pip install -U pip
+pip install -r notebooks\requirements.txt
+jupyter notebook notebooks\qrng_experiments.ipynb
+```
+
+On macOS/Linux:
+
+```bash
+python -m venv .venv-notebook
+source .venv-notebook/bin/activate
+python -m pip install -U pip
+pip install -r notebooks/requirements.txt
+jupyter notebook notebooks/qrng_experiments.ipynb
+```
+
+Run all cells top-to-bottom. Default configuration uses Qiskit Aer only and needs no IBM credentials.
+
+## Experiment defaults
+
+- `N_QUBITS = 8` (integers in `0..255`)
+- `SHOTS = 4096` (equal sample size across Aer / `random` / `secrets`)
+- `SEED = 42` (Aer + PRNG reproducibility; `secrets` is never seeded)
+- `RUN_IBM_HARDWARE = False` (hardware is opt-in)
+
+Limits are enforced in `qrng_lab.py` (`MAX_QUBITS=16`, `MAX_SHOTS=20000`).
+
+## Optional IBM Quantum hardware
+
+1. Create an IBM Quantum Platform API key.
+2. Set environment variables:
+   - `IBM_QUANTUM_TOKEN` (required)
+   - `IBM_QUANTUM_INSTANCE` (recommended CRN or instance name)
+3. In the notebook config cell, set `RUN_IBM_HARDWARE = True`.
+4. Re-run the notebook.
+
+If credentials are missing or the selected backend is a simulator, the hardware path **raises** and does **not** fall back to Aer.
+
+## Programmatic verification
+
+```powershell
+.\.venv-notebook\Scripts\Activate.ps1
+python -c "import nbformat; from nbclient import NotebookClient; nb=nbformat.read('notebooks/qrng_experiments.ipynb', as_version=4); NotebookClient(nb, timeout=600, kernel_name='python3').execute(); print('OK')"
+```
+
+## Scientific honesty
+
+- Aer output is a **classical simulation** of quantum circuits, not physical quantum entropy.
+- Statistical tests do **not** prove cryptographic security.
+- QRNG is **not** post-quantum cryptography.
+- No NIST SP 800-90B evaluation is performed here.
