@@ -8,10 +8,29 @@
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![React](https://img.shields.io/badge/Frontend-React-61DAFB)](https://react.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black)](https://qubitkey.vercel.app)
+[![API](https://img.shields.io/badge/API-Render-46E3B7)](https://qubitkey-backend.onrender.com/api/health)
 
 QubitKey explores how quantum computing can contribute to the future of digital security by combining **quantum random number generation (QRNG), entropy analysis, and practical digital authentication** in one interactive platform.
 
 Built for the **AstraCode Qiskit Fall Fest 2026 Hackathon**, QubitKey translates quantum computing concepts into an accessible, experiment-driven security application.
+
+---
+
+## Live Demo (judges)
+
+| Surface | URL |
+|---|---|
+| **Web app** | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) |
+| **API** | [https://qubitkey-backend.onrender.com](https://qubitkey-backend.onrender.com) |
+| **OpenAPI docs** | [https://qubitkey-backend.onrender.com/docs](https://qubitkey-backend.onrender.com/docs) |
+| **Health check** | [https://qubitkey-backend.onrender.com/api/health](https://qubitkey-backend.onrender.com/api/health) |
+| **Source** | [https://github.com/Isomkevin/QubitKey](https://github.com/Isomkevin/QubitKey) |
+
+**Judge tip:** The Render free tier may cold-start after ~15 minutes of inactivity. The first API request after idle can take 30–60 seconds; then the lab responds normally.
+
+**8-minute walkthrough:** see [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).  
+**Full documentation index:** see [`docs/README.md`](docs/README.md).
 
 ---
 
@@ -215,73 +234,52 @@ The architecture is designed to support local experimentation without requiring 
 
 ## Getting Started
 
-### Prerequisites
+### Try the hosted demo first
 
-Install the following:
+Open [https://qubitkey.vercel.app](https://qubitkey.vercel.app) — no local install required for the core QRNG lab, entropy observatory, and TOTP demo.
 
-- Python 3.11 or later.
-- Node.js and npm.
-- Git.
+Deployment details (Render + Vercel): [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
-Optional:
+### Local development
 
-- An IBM Quantum account and appropriate credentials for physical quantum hardware experiments.
+#### Prerequisites
 
-### 1. Clone the Repository
+- Python 3.11 or later
+- Node.js and npm
+- Git
+
+Optional: an IBM Quantum account for physical hardware experiments.
+
+#### 1. Clone
 
 ```bash
 git clone https://github.com/Isomkevin/QubitKey.git
 cd QubitKey
 ```
 
-### 2. Backend Setup
+#### 2. Backend
 
 ```bash
 cd backend
 python -m venv .venv
 ```
 
-On Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-On macOS and Linux:
-
-```bash
-source .venv/bin/activate
-```
-
-Install backend dependencies:
+On Windows: `.venv\Scripts\activate`  
+On macOS/Linux: `source .venv/bin/activate`
 
 ```bash
 pip install -e ".[dev]"
 # Optional IBM hardware support:
 # pip install -e ".[dev,ibm]"
-```
-
-Start the backend:
-
-```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-The API should be accessible at:
+| Local surface | URL |
+|---|---|
+| API | http://localhost:8000 |
+| OpenAPI | http://localhost:8000/docs |
 
-```text
-http://localhost:8000
-```
-
-API documentation:
-
-```text
-http://localhost:8000/docs
-```
-
-### 3. Frontend Setup
-
-Open another terminal:
+#### 3. Frontend
 
 ```bash
 cd frontend
@@ -289,13 +287,16 @@ npm install
 npm run dev
 ```
 
-Open the local development URL printed by Vite, typically:
-
-```text
-http://localhost:5173
-```
+Open http://localhost:5173 (or the URL Vite prints).
 
 Copy `.env.example` to `.env` for optional IBM / PQC flags. Never commit real credentials.
+
+For a local frontend against the hosted API:
+
+```bash
+# frontend/.env
+VITE_API_BASE=https://qubitkey-backend.onrender.com
+```
 
 ---
 
@@ -379,27 +380,14 @@ A dataset can pass statistical tests and still be unsuitable for cryptographic a
 
 ```text
 QubitKey/
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   ├── core/
-│   │   ├── schemas/
-│   │   ├── quantum/
-│   │   ├── analysis/
-│   │   ├── security/
-│   │   └── main.py
-│   ├── tests/
-│   └── pyproject.toml
-├── frontend/
-│   ├── src/
-│   │   ├── api/
-│   │   ├── components/
-│   │   └── pages/
-│   └── package.json
-├── notebooks/
-│   └── qrng_experiment.ipynb
-├── docs/
-├── prompts/
+├── backend/                 # FastAPI + Qiskit QRNG / analysis / TOTP
+├── frontend/                # React + Vite UI (Vercel)
+│   └── vercel.json
+├── notebooks/               # Standalone research notebook
+├── docs/                    # Specs, contracts, demo, deployment
+├── prompts/                 # Multi-agent build prompts
+├── render.yaml              # Render backend blueprint
+├── docker-compose.yml
 ├── AGENTS.md
 ├── README.md
 ├── LICENSE
@@ -454,9 +442,15 @@ QubitKey/
 **Project:** QubitKey  
 **Tagline:** Quantum Entropy. Stronger Digital Identity.
 
-QubitKey was developed as an exploration of how quantum computing can be translated into practical, accessible security experimentation.
+| Resource | Link |
+|---|---|
+| Live app | https://qubitkey.vercel.app |
+| API | https://qubitkey-backend.onrender.com |
+| Demo script | [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) |
+| Docs index | [`docs/README.md`](docs/README.md) |
+| Repository | https://github.com/Isomkevin/QubitKey |
 
-Our objective is to make quantum entropy understandable, measurable, and connected to real-world digital identity challenges.
+QubitKey was developed as an exploration of how quantum computing can be translated into practical, accessible security experimentation — with explicit scientific honesty: simulator ≠ physical quantum entropy; TOTP ≠ quantum-resistant; stats ≠ cryptographic certification.
 
 ---
 
@@ -494,8 +488,6 @@ See the `LICENSE` file for the applicable terms.
 
 ---
 
-**QubitKey**
+**QubitKey** — *Quantum Entropy. Stronger Digital Identity.*
 
-*Quantum Entropy. Stronger Digital Identity.*
-
-[GitHub Repository](https://github.com/Isomkevin/QubitKey)
+[Live Demo](https://qubitkey.vercel.app) · [API](https://qubitkey-backend.onrender.com) · [GitHub](https://github.com/Isomkevin/QubitKey)

@@ -8,7 +8,7 @@ Scope:
 - Local simulator adapter using a currently supported Qiskit API.
 - Optional IBM Quantum Runtime adapter behind explicit configuration.
 - Provenance metadata and clear errors.
-- Runnable `notebooks/qrng_experiment.ipynb`.
+- Runnable `notebooks/qrng_experiments.ipynb`.
 
 Requirements:
 - Default path works without IBM credentials.

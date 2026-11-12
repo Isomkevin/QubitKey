@@ -1,5 +1,7 @@
 # Experiment Methodology
 
+Educational methodology for QubitKey QRNG experiments. Interactive runs: [https://qubitkey.vercel.app](https://qubitkey.vercel.app). API contracts: [`INTEGRATION_CONTRACTS.md`](INTEGRATION_CONTRACTS.md).
+
 ## Circuit
 
 1. Initialise `n` qubits in `|0⟩`.

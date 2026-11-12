@@ -5,7 +5,7 @@
 - **Status:** Accepted
 - **Date:** 2026-11-13
 - **Context:** README sketched a flatter `backend/api/` and `authentication/` layout; MASTER_BUILD_PROMPT and ARCHITECTURE specify `backend/app/` with `security/`.
-- **Decision:** Use `backend/app/` with packages `core`, `api`, `schemas`, `quantum`, `analysis`, `security`. Notebook name: `notebooks/qrng_experiment.ipynb`. ASGI entry: `backend.app.main:app`.
+- **Decision:** Use `backend/app/` with packages `core`, `api`, `schemas`, `quantum`, `analysis`, `security`. Notebook name: `notebooks/qrng_experiments.ipynb`. ASGI entry: `backend.app.main:app`.
 - **Consequences:** README quickstart must be updated (Milestone 7 or when scaffold lands). Agents follow MASTER layout.
 
 ## ADR-002: Local simulator primitive
@@ -79,3 +79,11 @@
 - **Context:** Parallel agents need stable contracts.
 - **Decision:** Coordinator owns `backend/app/schemas/` and `docs/INTEGRATION_CONTRACTS.md`. Domain agents import models; field changes require ADR + contract update before implementation.
 - **Consequences:** Slight coordination overhead; fewer integration breakages.
+
+## ADR-011: Hosted demo platforms
+
+- **Status:** Accepted
+- **Date:** 2026-11-13
+- **Context:** Judges need a zero-install path; local-only demos risk environment friction during a timed review.
+- **Decision:** Deploy the React SPA to **Vercel** (`https://qubitkey.vercel.app`, root `frontend`, `VITE_API_BASE` at build time) and the FastAPI service to **Render** (`https://qubitkey-backend.onrender.com`, free plan, Frankfurt). Document CORS, cold starts, and ops in `docs/DEPLOYMENT.md`. Keep in-memory demo stores; do not add paid datastores without an explicit product decision.
+- **Consequences:** Public demo URLs become part of the README and demo script. Free Render cold starts must be called out. Hosting does not change scientific honesty requirements.

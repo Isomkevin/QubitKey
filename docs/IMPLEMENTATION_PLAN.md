@@ -4,9 +4,17 @@
 
 Build a scientifically honest, secure-by-design, open-source QRNG education and TOTP demonstration. Simulator output is never presented as physical quantum entropy. TOTP is not quantum-resistant. Statistical tests are not cryptographic certification.
 
+## Live platform
+
+| Surface | URL |
+|---|---|
+| App | https://qubitkey.vercel.app |
+| API | https://qubitkey-backend.onrender.com |
+| Deployment guide | [`DEPLOYMENT.md`](DEPLOYMENT.md) |
+
 ## Repository status
 
-Milestones 0–7 implemented in-repo: backend QRNG/analysis/TOTP/IBM adapter/PQC, React frontend, notebook, CI/Docker/docs. See `docs/RELEASE_CHECKLIST.md` for verification steps.
+Milestones 0–7 implemented in-repo: backend QRNG/analysis/TOTP/IBM adapter/PQC, React frontend, notebook, CI/Docker/docs, and hosted demo (Vercel + Render). See `docs/RELEASE_CHECKLIST.md` and `docs/DEMO_SCRIPT.md` for verification and judging walkthrough.
 
 ## Toolchain (pinned)
 
@@ -46,7 +54,7 @@ qubitkey/
 │   │   └── security/
 │   └── tests/
 ├── frontend/
-├── notebooks/qrng_experiment.ipynb
+├── notebooks/qrng_experiments.ipynb
 ├── scripts/
 └── .github/workflows/
 ```
@@ -85,7 +93,7 @@ Deliverables: `IMPLEMENTATION_PLAN.md`, `AGENT_OWNERSHIP.md`, `INTEGRATION_CONTR
 
 - Frequency, histogram, runs, empirical Shannon entropy, autocorrelation, caveated goodness-of-fit.
 - `/api/analysis/compare` across simulator, `random.Random`, `secrets`.
-- Runnable `notebooks/qrng_experiment.ipynb` without IBM credentials.
+- Runnable `notebooks/qrng_experiments.ipynb` without IBM credentials.
 - **Gate:** fixture tests; notebook executes; caveats present.
 
 ### Milestone 3 — Frontend lab

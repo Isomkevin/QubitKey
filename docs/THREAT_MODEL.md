@@ -2,7 +2,9 @@
 
 ## Scope
 
-Local-first educational prototype: QRNG lab, entropy comparison, TOTP demo, optional ML-DSA demo. Not a production entropy service or production authenticator.
+Educational prototype (local and hosted): QRNG lab, entropy comparison, TOTP demo, optional ML-DSA demo. Not a production entropy service or production authenticator.
+
+**Hosted surfaces:** https://qubitkey.vercel.app (Vercel) → https://qubitkey-backend.onrender.com (Render). See [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
 ## Assets
 
@@ -17,7 +19,7 @@ Local-first educational prototype: QRNG lab, entropy comparison, TOTP demo, opti
 ## Trust boundaries
 
 1. **Browser** — untrusted for secret persistence. Do not store secrets in `localStorage` / `sessionStorage`.
-2. **Backend process memory** — short-lived demo store; lost on restart; not multi-tenant safe.
+2. **Backend process memory** — short-lived demo store; lost on restart / Render cold start; not multi-tenant safe.
 3. **Simulator** — educational only; not a physical entropy source.
 4. **IBM QPU** — physical measurements when executed; not certified for production entropy without characterisation.
 5. **OS CSPRNG** — trusted for MVP TOTP / challenge generation.

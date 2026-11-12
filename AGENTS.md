@@ -3,6 +3,11 @@
 ## Mission
 Build a scientifically honest, secure-by-design, open-source QRNG education and TOTP demonstration.
 
+## Live demo (do not invent alternate public URLs)
+- App: https://qubitkey.vercel.app
+- API: https://qubitkey-backend.onrender.com
+- Docs index: `docs/README.md` · Deployment: `docs/DEPLOYMENT.md`
+
 ## Mandatory truthfulness
 - Qiskit simulator output is simulated; never call it genuine physical quantum entropy.
 - Hardware output requires a real IBM backend execution and verifiable job metadata.

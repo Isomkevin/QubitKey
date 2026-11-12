@@ -126,7 +126,7 @@ qubitkey/
 │   │   └── schemas/
 │   └── tests/
 ├── notebooks/
-│   └── qrng_experiment.ipynb
+│   └── qrng_experiments.ipynb
 ├── scripts/
 └── .github/workflows/
 ```
@@ -301,7 +301,7 @@ Authenticator should show:
 
 ## 9. Notebook requirements
 
-Create `notebooks/qrng_experiment.ipynb` with:
+Create `notebooks/qrng_experiments.ipynb` with:
 1. Learning objectives.
 2. Install instructions.
 3. Imports and environment/version display.

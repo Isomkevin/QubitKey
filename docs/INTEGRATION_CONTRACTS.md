@@ -2,9 +2,26 @@
 
 Frozen frontend/backend contracts for parallel agent work. Schema ownership: Coordinator (`backend/app/schemas/`). Changes require an ADR in `DECISIONS.md`.
 
-Base URL (dev): `http://localhost:8000`
+## Base URLs
 
-CORS: allow local Vite origin (`http://localhost:5173`) in development.
+| Environment | Base URL |
+|---|---|
+| **Production API** | `https://qubitkey-backend.onrender.com` |
+| **Production app** | `https://qubitkey.vercel.app` |
+| Local API | `http://localhost:8000` |
+| Local app | `http://localhost:5173` |
+
+OpenAPI (prod): https://qubitkey-backend.onrender.com/docs  
+Health (prod): https://qubitkey-backend.onrender.com/api/health
+
+## CORS
+
+| Environment | Allowed origins (typical) |
+|---|---|
+| Development | `http://localhost:5173`, `http://127.0.0.1:5173` |
+| Production | `https://qubitkey.vercel.app`, `https://qubitkey-kisom-projects.vercel.app` (+ preview origins if used) |
+
+Configured via `QUBITKEY_CORS_ORIGINS` (comma-separated). Frontend production builds set `VITE_API_BASE` to the Render API origin.
 
 ---
 

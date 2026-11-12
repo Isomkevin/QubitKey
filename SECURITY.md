@@ -4,6 +4,15 @@
 
 If you discover a vulnerability in QubitKey, please open a private security advisory or email the maintainers. Do not include secrets in public issues.
 
+## Hosted demo
+
+| Surface | URL |
+|---|---|
+| App | https://qubitkey.vercel.app |
+| API | https://qubitkey-backend.onrender.com |
+
+The public deployment is an **educational demo**, not a hardened multi-tenant service. Demo state is in-memory and resets on backend restart / cold start. See `docs/DEPLOYMENT.md` and `docs/THREAT_MODEL.md`.
+
 ## Product posture
 
 QubitKey is an **educational prototype**:
@@ -12,6 +21,7 @@ QubitKey is an **educational prototype**:
 - Not a production authentication service.
 - Simulator output is not physical quantum entropy.
 - TOTP is not quantum-resistant.
+- QRNG is not post-quantum cryptography.
 
 ## Hard requirements for contributors
 
@@ -20,5 +30,4 @@ QubitKey is an **educational prototype**:
 - Never silently fall back from IBM QPU execution to the simulator.
 - Do not invent cryptographic algorithms; use maintained libraries only.
 - Do not feed unvalidated simulator bits into cryptographic key APIs.
-
-See `docs/THREAT_MODEL.md` for the full threat model.
+- Keep production CORS and `VITE_API_BASE` aligned when changing hosts.
