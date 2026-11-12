@@ -1,0 +1,13 @@
+# QubitKey research notebook dependencies (Python 3.11+)
+qiskit[visualization]~=2.6.1
+qiskit-aer~=0.18.2
+qiskit-ibm-runtime~=0.52.1
+numpy>=2.0,<3
+scipy>=1.14
+pandas>=2.2
+matplotlib>=3.8
+jupyter>=1.0
+nbclient>=0.10
+ipykernel>=6.29
+nbformat>=5.10
+pylatexenc>=2.10
