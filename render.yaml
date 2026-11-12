@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: qubitkey-backend
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: backend
+    buildCommand: pip install .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: QUBITKEY_ENABLE_PQC
+        value: "false"
+      - key: QUBITKEY_ENABLE_IBM_QPU
+        value: "false"
+      - key: QUBITKEY_CORS_ORIGINS
+        sync: false
