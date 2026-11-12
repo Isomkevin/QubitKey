@@ -236,9 +236,8 @@ cd QubitKey
 
 ### 2. Backend Setup
 
-Create and activate a Python virtual environment:
-
 ```bash
+cd backend
 python -m venv .venv
 ```
 
@@ -257,13 +256,15 @@ source .venv/bin/activate
 Install backend dependencies:
 
 ```bash
-pip install -r backend/requirements.txt
+pip install -e ".[dev]"
+# Optional IBM hardware support:
+# pip install -e ".[dev,ibm]"
 ```
 
 Start the backend:
 
 ```bash
-uvicorn backend.main:app --reload
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The API should be accessible at:
@@ -294,7 +295,7 @@ Open the local development URL printed by Vite, typically:
 http://localhost:5173
 ```
 
-**Note:** These commands assume the repository uses the documented `backend/` and `frontend/` layout. Refer to the actual project structure and configuration files if the implementation differs.
+Copy `.env.example` to `.env` for optional IBM / PQC flags. Never commit real credentials.
 
 ---
 

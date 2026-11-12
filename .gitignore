@@ -1,0 +1,131 @@
+# =============================================================================
+# QubitKey .gitignore
+# Python (FastAPI/Qiskit) + React/Vite frontend + Jupyter notebooks
+# Keep .env.example and docs tracked; never commit secrets or local envs.
+# =============================================================================
+
+# ----- Python virtualenvs & packaging -----
+.venv/
+.venv-*/
+venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# ----- Python bytecode & caches -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.tox/
+.nox/
+.hypothesis/
+.cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+*.cover
+.dmypy.json
+dmypy.json
+
+# ----- Jupyter / notebooks -----
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+*.nbconvert.ipynb
+.jupyter/
+
+# ----- Node / frontend (Vite, Vitest, Tailwind) -----
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ----- Env / secrets / credentials (never commit) -----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+**/credentials*.json
+qiskit-ibm-*.json
+**/qiskit-ibm-*.json
+ibm-quantum*.json
+**/secrets/
+**/secret*.json
+*.totp
+*.otpauth
+
+# ----- OS -----
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ----- Editors / IDEs -----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# ----- Local / experiment / runtime data -----
+tmp/
+temp/
+.tmp/
+.data/
+data/local/
+exports/
+results/local/
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+
+# ----- Docker / local overrides -----
+docker-compose.override.yml
+.docker/
+
+# ----- Tooling / misc -----
+.direnv/
+.python-version
+.tool-versions
+*.bak
+*.orig
+*.tmp
+.parcel-cache/
+.turbo/
+.vercel/
+.netlify/
