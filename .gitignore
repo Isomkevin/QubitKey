@@ -45,6 +45,7 @@ dmypy.json
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 *.nbconvert.ipynb
+*.executed.ipynb
 .jupyter/
 
 # ----- Node / frontend (Vite, Vitest, Tailwind) -----

@@ -14,7 +14,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from itertools import islice
-from typing import Any, Iterable, Iterator, Mapping, Sequence
+from typing import Any, Iterable, Iterator, Sequence
 
 import numpy as np
 from scipy import stats
