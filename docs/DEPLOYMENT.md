@@ -16,10 +16,13 @@ Hosted for AstraCode Qiskit Fall Fest 2026 judging. Educational prototype — no
 
 Binder builds from `binder/` on the chosen Git ref. Share only `mybinder.org/v2/...` launch URLs (not ephemeral `hub.*.mybinder.org/user/...` session links). Prefer the pinned commit URL for judging reproducibility.
 
+Do **not** import the repo (or the `binder/` folder) as a separate Vercel Python project. Vercel cannot host Jupyter/Binder; that path fails with `PYTHON_ENTRYPOINT_NOT_FOUND`. Use mybinder.org for notebooks and keep the existing `qubitkey` Vercel project rooted at `frontend`.
+
 Dashboard shortcuts (maintainers):
 
 - Render service: `qubitkey-backend` (Frankfurt, free plan)
 - Vercel project: `qubitkey` (team `kisom-projects`), root directory `frontend`
+- Vercel project `binder` (if present): delete it — leftover mistaken import; not part of the hosted stack
 
 ## Topology
 

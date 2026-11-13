@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { api } from "../api/client.js";
+import { BINDER_NOTEBOOK } from "../constants/links.js";
 import IconButton from "./ui/IconButton.jsx";
 import {
   IconAbout,
   IconAuth,
   IconClose,
+  IconExternal,
   IconLab,
   IconMenu,
+  IconNotebook,
   IconObservatory,
   IconOverview,
   IconPqc,
@@ -103,6 +106,27 @@ function BrandBlock({ compact = false }) {
   );
 }
 
+function NotebookLaunchLink({ onNavigate }) {
+  return (
+    <a
+      href={BINDER_NOTEBOOK}
+      target="_blank"
+      rel="noreferrer"
+      onClick={onNavigate}
+      className="group flex min-h-[44px] items-center gap-3 rounded-md border border-line/80 bg-ink/40 px-3 py-2.5 text-sm text-slate-300 transition duration-fast hover:border-cyan/35 hover:bg-panel-elevated hover:text-white"
+    >
+      <IconNotebook className="shrink-0 text-cyan" />
+      <span className="min-w-0 flex-1">
+        <span className="block text-sm text-slate-100">Research notebook</span>
+        <span className="block text-[10px] text-slate-500 group-hover:text-slate-400">
+          Open on Binder ↗
+        </span>
+      </span>
+      <IconExternal className="shrink-0 text-slate-500 group-hover:text-cyan" />
+    </a>
+  );
+}
+
 function SidebarBody({ healthStatus, onNavigate, headerExtra }) {
   return (
     <>
@@ -112,6 +136,12 @@ function SidebarBody({ healthStatus, onNavigate, headerExtra }) {
       </div>
       <div className="mt-8 flex-1">
         <NavItems onNavigate={onNavigate} />
+        <div className="mt-4 border-t border-line/60 pt-4">
+          <p className="mb-2 px-1 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+            Research
+          </p>
+          <NotebookLaunchLink onNavigate={onNavigate} />
+        </div>
       </div>
       <div className="mt-6 space-y-3">
         <ApiStatus status={healthStatus} />

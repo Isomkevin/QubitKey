@@ -85,6 +85,33 @@ export function IconAbout(props) {
   );
 }
 
+export function IconNotebook(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="18" height="18" {...props}>
+      <path
+        d="M7 4h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconExternal(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="14" height="14" {...props}>
+      <path
+        d="M14 5h5v5M19 5l-9 9M10 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IconMenu(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="20" height="20" {...props}>

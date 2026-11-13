@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api/client.js";
+import { BINDER_NOTEBOOK } from "../constants/links.js";
 import { ErrorState, LoadingState } from "../components/StatusBlock.jsx";
 import Badge from "../components/ui/Badge.jsx";
 import { buttonClassName } from "../components/ui/Button.jsx";
@@ -152,6 +153,14 @@ export default function OverviewPage() {
                   >
                     Enroll TOTP authenticator →
                   </Link>
+                  <a
+                    href={BINDER_NOTEBOOK}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-md border border-line px-3 py-2.5 text-sm text-slate-200 transition hover:border-cyan/40 hover:bg-ink"
+                  >
+                    Open research notebook (Binder) ↗
+                  </a>
                 </div>
               </Panel>
             </div>

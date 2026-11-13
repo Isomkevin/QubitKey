@@ -1,5 +1,8 @@
+import { BINDER_NOTEBOOK, BINDER_NOTEBOOK_LATEST } from "../constants/links.js";
+import { buttonClassName } from "../components/ui/Button.jsx";
 import PageHeader from "../components/ui/PageHeader.jsx";
 import Panel from "../components/ui/Panel.jsx";
+import { IconExternal, IconNotebook } from "../components/ui/Icons.jsx";
 
 const CAVEATS = [
   "Qiskit Aer output is classical simulation — not physical quantum entropy.",
@@ -35,6 +38,43 @@ export default function AboutPage() {
         title="About & methodology"
         description="QubitKey is an educational platform for exploring Hadamard-based quantum random number generation with Qiskit, comparing classical baselines, and demonstrating a standards-based TOTP authenticator flow."
       />
+
+      <Panel elevated>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <IconNotebook className="text-cyan" />
+              <h2 className="text-sm font-medium text-white">Research notebook</h2>
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">
+              Full Hadamard QRNG experiment in Jupyter — circuits, Aer vs{" "}
+              <span className="font-mono text-xs text-slate-300">random</span> /{" "}
+              <span className="font-mono text-xs text-slate-300">secrets</span>, histograms, and
+              longest-run stats. Opens on Binder (first launch may take a few minutes).
+            </p>
+          </div>
+          <a
+            href={BINDER_NOTEBOOK}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonClassName({ className: "shrink-0 whitespace-nowrap" })}
+          >
+            Launch on Binder
+            <IconExternal />
+          </a>
+        </div>
+        <p className="mt-3 text-[11px] text-slate-500">
+          Prefer the pinned Binder build for judging.{" "}
+          <a
+            href={BINDER_NOTEBOOK_LATEST}
+            target="_blank"
+            rel="noreferrer"
+            className="text-cyan/80 underline-offset-2 hover:text-cyan hover:underline"
+          >
+            Latest on main
+          </a>
+        </p>
+      </Panel>
 
       <Panel elevated>
         <h2 className="text-sm font-medium text-white">Scientific honesty</h2>
