@@ -27,14 +27,12 @@ function formatNum(value, digits = 4) {
 function chiSquareSummary(metrics) {
   const chi = metrics?.chi_square;
   if (!chi || typeof chi !== "object") return null;
-  if (chi.statistic != null) {
-    return {
-      statistic: chi.statistic,
-      p_value: chi.p_value,
-      passed: chi.passed ?? chi.accept_null,
-    };
-  }
-  return chi;
+  return {
+    stat: chi.stat ?? chi.statistic,
+    p_value: chi.p_value,
+    applicable: chi.applicable,
+    limitation: chi.limitation,
+  };
 }
 
 export default function ObservatoryPage() {
@@ -249,11 +247,16 @@ export default function ObservatoryPage() {
                   {chi ? (
                     <div className="border-t border-line pt-3 text-xs text-slate-400">
                       <p className="qk-label mb-1">Chi-square</p>
-                      <p className="font-mono text-slate-300">
-                        χ²={formatNum(chi.statistic, 3)}
-                        {chi.p_value != null ? ` · p=${formatNum(chi.p_value, 3)}` : ""}
-                        {chi.passed != null ? ` · ${chi.passed ? "accept" : "reject"} H₀` : ""}
-                      </p>
+                      {chi.applicable === false ? (
+                        <p className="text-xs text-slate-500">
+                          {chi.limitation || "Not applicable for this sample."}
+                        </p>
+                      ) : (
+                        <p className="font-mono text-slate-300">
+                          χ²={formatNum(chi.stat, 3)}
+                          {chi.p_value != null ? ` · p=${formatNum(chi.p_value, 3)}` : ""}
+                        </p>
+                      )}
                     </div>
                   ) : null}
                 </Panel>

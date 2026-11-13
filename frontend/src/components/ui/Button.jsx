@@ -14,6 +14,16 @@ const SIZES = {
   lg: "px-5 py-3 text-sm min-h-[48px]",
 };
 
+export function buttonClassName({ variant = "primary", size = "md", className = "" } = {}) {
+  return [
+    "inline-flex items-center justify-center gap-2 rounded-md font-medium transition duration-fast",
+    "focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60",
+    VARIANTS[variant] || VARIANTS.primary,
+    SIZES[size] || SIZES.md,
+    className,
+  ].join(" ");
+}
+
 export default function Button({
   children,
   variant = "primary",
@@ -23,17 +33,7 @@ export default function Button({
   ...props
 }) {
   return (
-    <button
-      type={type}
-      className={[
-        "inline-flex items-center justify-center gap-2 rounded-md font-medium transition duration-fast",
-        "focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60",
-        VARIANTS[variant] || VARIANTS.primary,
-        SIZES[size] || SIZES.md,
-        className,
-      ].join(" ")}
-      {...props}
-    >
+    <button type={type} className={buttonClassName({ variant, size, className })} {...props}>
       {children}
     </button>
   );

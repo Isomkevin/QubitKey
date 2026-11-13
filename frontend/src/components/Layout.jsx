@@ -52,7 +52,11 @@ function NavItems({ onNavigate }) {
                   ].join(" ")}
                   aria-hidden="true"
                 />
-                <Icon className={isActive ? "text-cyan" : "text-slate-500 group-hover:text-slate-300"} />
+                <Icon
+                  className={
+                    isActive ? "text-cyan" : "text-slate-500 group-hover:text-slate-300"
+                  }
+                />
                 <span>{link.label}</span>
               </>
             )}
@@ -99,6 +103,27 @@ function BrandBlock({ compact = false }) {
   );
 }
 
+function SidebarBody({ healthStatus, onNavigate, headerExtra }) {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-2">
+        <BrandBlock />
+        {headerExtra}
+      </div>
+      <div className="mt-8 flex-1">
+        <NavItems onNavigate={onNavigate} />
+      </div>
+      <div className="mt-6 space-y-3">
+        <ApiStatus status={healthStatus} />
+        <p className="text-[11px] leading-relaxed text-slate-500">
+          Educational prototype — simulator output is not physical quantum entropy. TOTP is not
+          quantum-resistant.
+        </p>
+      </div>
+    </>
+  );
+}
+
 export default function Layout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [healthStatus, setHealthStatus] = useState("checking");
@@ -112,7 +137,6 @@ export default function Layout() {
       await api.health();
       setHealthStatus("ok");
     } catch {
-      // Render free tier may cold-start; surface waking then retry once
       setHealthStatus("waking");
       try {
         await new Promise((r) => setTimeout(r, 2500));
@@ -148,59 +172,40 @@ export default function Layout() {
     };
   }, [drawerOpen]);
 
-  const sidebarInner = (
-    <>
-      <div className="flex items-start justify-between gap-2">
-        <BrandBlock />
-        <div className="md:hidden">
-          <IconButton
-            ref={closeBtnRef}
-            label="Close navigation"
-            onClick={() => setDrawerOpen(false)}
-          >
-            <IconClose />
-          </IconButton>
-        </div>
-      </div>
-
-      <div className="mt-8 flex-1">
-        <NavItems onNavigate={() => setDrawerOpen(false)} />
-      </div>
-
-      <div className="mt-6 space-y-3">
-        <ApiStatus status={healthStatus} />
-        <p className="text-[11px] leading-relaxed text-slate-500">
-          Educational prototype — simulator output is not physical quantum entropy. TOTP is not
-          quantum-resistant.
-        </p>
-      </div>
-    </>
-  );
-
   return (
     <div className="min-h-screen md:flex">
-      {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-line/80 bg-ink/90 px-4 py-5 backdrop-blur-md md:flex lg:w-64">
-        {sidebarInner}
+        <SidebarBody healthStatus={healthStatus} />
       </aside>
 
-      {/* Mobile drawer */}
       {drawerOpen ? (
         <div className="fixed inset-0 z-40 md:hidden" role="presentation">
           <button
             type="button"
-            className="absolute inset-0 bg-black/60 animate-fade-in"
+            className="absolute inset-0 animate-fade-in bg-black/60"
             aria-label="Close navigation overlay"
             onClick={() => setDrawerOpen(false)}
           />
           <aside
             id={drawerId}
-            className="absolute inset-y-0 left-0 flex w-[min(18rem,88vw)] flex-col border-r border-line bg-ink px-4 py-5 shadow-panel animate-slide-in-left"
+            className="absolute inset-y-0 left-0 flex w-[min(18rem,88vw)] animate-slide-in-left flex-col border-r border-line bg-ink px-4 py-5 shadow-panel"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation"
           >
-            {sidebarInner}
+            <SidebarBody
+              healthStatus={healthStatus}
+              onNavigate={() => setDrawerOpen(false)}
+              headerExtra={
+                <IconButton
+                  ref={closeBtnRef}
+                  label="Close navigation"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  <IconClose />
+                </IconButton>
+              }
+            />
           </aside>
         </div>
       ) : null}

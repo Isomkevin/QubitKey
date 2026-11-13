@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../api/client.js";
 import { ErrorState, LoadingState } from "../components/StatusBlock.jsx";
 import Badge from "../components/ui/Badge.jsx";
-import Button from "../components/ui/Button.jsx";
+import { buttonClassName } from "../components/ui/Button.jsx";
 import Panel from "../components/ui/Panel.jsx";
 
 function SourceRow({ name, info }) {
@@ -75,11 +75,11 @@ export default function OverviewPage() {
             provenance on every result.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/lab">
-              <Button>Open Quantum Lab</Button>
+            <Link to="/lab" className={buttonClassName()}>
+              Open Quantum Lab
             </Link>
-            <Link to="/observatory">
-              <Button variant="secondary">Entropy Observatory</Button>
+            <Link to="/observatory" className={buttonClassName({ variant: "secondary" })}>
+              Entropy Observatory
             </Link>
           </div>
         </div>
