@@ -9,8 +9,12 @@ For AstraCode Qiskit Fall Fest 2026 judging.
 | App | https://qubitkey.vercel.app |
 | API health | https://qubitkey-backend.onrender.com/api/health |
 | OpenAPI | https://qubitkey-backend.onrender.com/docs |
+| Research notebook (Binder, latest) | https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb |
+| Research notebook (Binder, pinned) | https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb |
 
 **Cold start:** If the Overview page shows a temporary fetch error, wait ~30–60 seconds and refresh — the free Render API may be waking up. No IBM credentials are required for the core demo.
+
+**Binder:** Share only `mybinder.org/v2/...` launch links (opens the notebook). Prefer the **pinned** URL for judging so everyone gets the same commit. Do **not** share `hub.gesis.mybinder.org/user/...` session URLs — they expire and show “Binder inaccessible” for others. First Binder build can take several minutes.
 
 ## Local fallback (optional)
 
@@ -73,4 +77,4 @@ QubitKey is a scientifically honest educational lab: quantum measurement experim
 - Architecture: React (Vercel) → FastAPI + Qiskit Aer (Render)
 - Contracts and provenance rules: `docs/INTEGRATION_CONTRACTS.md`
 - Threat model: `docs/THREAT_MODEL.md`
-- Standalone notebook: `notebooks/qrng_experiments.ipynb`
+- Standalone notebook: [Binder latest](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) · [Binder pinned](https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb) (`notebooks/qrng_experiments.ipynb`)

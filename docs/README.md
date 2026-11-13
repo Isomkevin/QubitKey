@@ -10,15 +10,18 @@ Judge- and contributor-facing documentation for the AstraCode Qiskit Fall Fest 2
 | API (Render) | https://qubitkey-backend.onrender.com |
 | OpenAPI | https://qubitkey-backend.onrender.com/docs |
 | Health | https://qubitkey-backend.onrender.com/api/health |
+| Research notebook (Binder, latest) | https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb |
+| Research notebook (Binder, pinned) | https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb |
 | Repository | https://github.com/Isomkevin/QubitKey |
 
-Cold start note: the free Render backend may sleep after ~15 minutes idle. Allow 30–60 seconds on the first request after wake.
+Cold start note: the free Render backend may sleep after ~15 minutes idle. Allow 30–60 seconds on the first request after wake. Binder sessions are temporary; always share a `mybinder.org/v2/...` launch URL, not a `hub.*.mybinder.org/user/...` session link. Prefer the pinned Binder URL for reproducible judging.
 
 ## Start here (judges)
 
 1. Open the [live app](https://qubitkey.vercel.app).
 2. Follow the timed walkthrough in [`DEMO_SCRIPT.md`](DEMO_SCRIPT.md).
-3. Skim scientific honesty in [`EXPERIMENT_METHODOLOGY.md`](EXPERIMENT_METHODOLOGY.md) and [`THREAT_MODEL.md`](THREAT_MODEL.md).
+3. Optional: open the [pinned research notebook on Binder](https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb) and run cells top-to-bottom.
+4. Skim scientific honesty in [`EXPERIMENT_METHODOLOGY.md`](EXPERIMENT_METHODOLOGY.md) and [`THREAT_MODEL.md`](THREAT_MODEL.md).
 
 ## Document map
 

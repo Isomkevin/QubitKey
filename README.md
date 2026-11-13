@@ -24,7 +24,7 @@ Built for the **AstraCode Qiskit Fall Fest 2026 Hackathon**, QubitKey translates
 |---|---|
 | **Web app** | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) |
 | **API** | [https://qubitkey-backend.onrender.com](https://qubitkey-backend.onrender.com) |
-| **Research notebook (Binder)** | [Launch on mybinder.org](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) |
+| **Research notebook (Binder)** | [Latest `main`](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) · [Pinned commit](https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb) — share these; do not share temporary `hub.*.mybinder.org/user/...` links |
 | **OpenAPI docs** | [https://qubitkey-backend.onrender.com/docs](https://qubitkey-backend.onrender.com/docs) |
 | **Health check** | [https://qubitkey-backend.onrender.com/api/health](https://qubitkey-backend.onrender.com/api/health) |
 | **Source** | [https://github.com/Isomkevin/QubitKey](https://github.com/Isomkevin/QubitKey) |

@@ -10,7 +10,11 @@ Hosted for AstraCode Qiskit Fall Fest 2026 judging. Educational prototype — no
 | Backend API | Render | https://qubitkey-backend.onrender.com |
 | OpenAPI | Render | https://qubitkey-backend.onrender.com/docs |
 | Health | Render | https://qubitkey-backend.onrender.com/api/health |
+| Research notebook (latest) | Binder | https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb |
+| Research notebook (pinned) | Binder | https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb |
 | Source | GitHub | https://github.com/Isomkevin/QubitKey |
+
+Binder builds from `binder/` on the chosen Git ref. Share only `mybinder.org/v2/...` launch URLs (not ephemeral `hub.*.mybinder.org/user/...` session links). Prefer the pinned commit URL for judging reproducibility.
 
 Dashboard shortcuts (maintainers):
 

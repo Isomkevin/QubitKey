@@ -31,6 +31,8 @@ Use this before judging, demos, or tagging a release.
 - [ ] TOTP enroll returns `Cache-Control: no-store`; verify works with authenticator app
 - [ ] IBM QPU unavailable returns error (no fake success / no silent simulator fallback)
 - [ ] Notebook `notebooks/qrng_experiments.ipynb` runs without IBM credentials
+- [ ] Binder latest opens the notebook: https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb
+- [ ] Binder pinned opens the notebook: https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb
 
 ## Honesty QA
 

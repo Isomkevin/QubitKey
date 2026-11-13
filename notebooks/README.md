@@ -9,7 +9,7 @@ Standalone Qiskit experiments for QubitKey. These notebooks do **not** require t
 
 | Option | URL | Notes |
 |---|---|---|
-| **Binder** (full JupyterLab) | [Launch notebook](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) | Clones the whole repo (`qrng_lab.py` works). First build can take several minutes. |
+| **Binder** (full JupyterLab) | [Latest `main`](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) · [Pinned commit](https://mybinder.org/v2/gh/Isomkevin/QubitKey/ef87d4e1390975de631c5dfc7a69f4c00d1244c2?urlpath=lab%2Ftree%2Fnotebooks%2Fqrng_experiments.ipynb) | Clones the whole repo (`qrng_lab.py` works). First build can take several minutes. Prefer the pinned URL for judging reproducibility. |
 | **Google Colab** | [Open notebook](https://colab.research.google.com/github/Isomkevin/QubitKey/blob/main/notebooks/qrng_experiments.ipynb) | Faster start; add a cell that clones the repo so `qrng_lab.py` is available (see below). |
 | Web app demo | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) | Interactive product UI — not the research notebook. |
 
