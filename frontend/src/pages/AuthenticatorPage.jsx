@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { api } from "../api/client.js";
 import { EmptyState, ErrorState, LoadingState } from "../components/StatusBlock.jsx";
+import Badge from "../components/ui/Badge.jsx";
+import Button from "../components/ui/Button.jsx";
+import Field from "../components/ui/Field.jsx";
+import PageHeader from "../components/ui/PageHeader.jsx";
+import Panel from "../components/ui/Panel.jsx";
 
 export default function AuthenticatorPage() {
   const [accountLabel, setAccountLabel] = useState("demo@local");
@@ -51,117 +56,143 @@ export default function AuthenticatorPage() {
   }
 
   return (
-    <section className="animate-fade-up space-y-6">
-      <div>
-        <h2 className="text-2xl font-semibold text-white">Authenticator demo</h2>
-        <p className="mt-2 max-w-3xl text-sm text-slate-300">
-          TOTP secrets are generated with the OS CSPRNG. This is not a quantum-resistant protocol,
-          and secrets are not stored in browser localStorage.
+    <section className="qk-page">
+      <PageHeader
+        eyebrow="Identity"
+        title="Authenticator"
+        description="TOTP secrets are generated with the OS CSPRNG. This is not a quantum-resistant protocol, and secrets are not stored in browser localStorage."
+        actions={
+          enrollment ? <Badge tone="ok">Enrolled</Badge> : <Badge tone="mute">Not enrolled</Badge>
+        }
+      />
+
+      <div className="qk-callout-info">
+        <p className="text-sm text-slate-200">
+          Educational demonstration only. TOTP is{" "}
+          <strong className="font-medium text-white">not quantum-resistant</strong>. Secrets remain
+          in memory for this session and are never written to localStorage.
         </p>
       </div>
 
-      <form
-        onSubmit={onEnroll}
-        className="grid gap-4 rounded-md border border-line bg-panel/40 p-4 md:grid-cols-3"
-      >
-        <label className="text-sm text-slate-300">
-          Account label
-          <input
-            className="mt-1 w-full rounded-md border border-line bg-ink px-2 py-2"
-            value={accountLabel}
-            onChange={(e) => setAccountLabel(e.target.value)}
-            required
-          />
-        </label>
-        <label className="text-sm text-slate-300">
-          Issuer
-          <input
-            className="mt-1 w-full rounded-md border border-line bg-ink px-2 py-2"
-            value={issuer}
-            onChange={(e) => setIssuer(e.target.value)}
-            required
-          />
-        </label>
-        <div className="flex items-end">
-          <button
-            type="submit"
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-60"
-            disabled={loading}
-          >
-            Enroll
-          </button>
+      <Panel as="form" onSubmit={onEnroll} elevated>
+        <p className="qk-label">Step 1 · Enroll</p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <Field label="Account label" htmlFor="totp-account">
+            <input
+              id="totp-account"
+              className="qk-input"
+              value={accountLabel}
+              onChange={(e) => setAccountLabel(e.target.value)}
+              required
+            />
+          </Field>
+          <Field label="Issuer" htmlFor="totp-issuer">
+            <input
+              id="totp-issuer"
+              className="qk-input"
+              value={issuer}
+              onChange={(e) => setIssuer(e.target.value)}
+              required
+            />
+          </Field>
+          <div className="flex items-end">
+            <Button type="submit" className="w-full md:w-auto" disabled={loading}>
+              Enroll
+            </Button>
+          </div>
         </div>
-      </form>
+      </Panel>
 
-      {loading ? <LoadingState /> : null}
+      {loading && !enrollment ? <LoadingState label="Enrolling…" /> : null}
       {error ? <ErrorState error={error} /> : null}
       {!enrollment && !loading ? (
-        <EmptyState message="Enroll to receive a one-time QR and manual setup key." />
+        <EmptyState
+          title="Awaiting enrollment"
+          message="Enroll to receive a one-time QR and manual setup key."
+        />
       ) : null}
 
       {enrollment ? (
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-md border border-line bg-panel/40 p-4">
-            <h3 className="text-sm font-medium text-white">Provisioning QR</h3>
-            <img
-              className="mt-3 max-w-xs rounded-md bg-white p-2"
-              alt="TOTP enrollment QR code"
-              src={`data:image/png;base64,${enrollment.qr_png_base64}`}
-            />
-            <button
-              type="button"
-              className="mt-3 text-sm text-accent underline"
-              onClick={() => setShowSecret((v) => !v)}
-            >
-              {showSecret ? "Hide manual key" : "Reveal manual key"}
-            </button>
-            {showSecret ? (
-              <p className="mt-2 break-all font-mono text-xs text-slate-200">
-                {enrollment.secret_base32}
-              </p>
+        <div className="animate-fade-up grid gap-4 lg:grid-cols-2">
+          <Panel elevated className="space-y-4">
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="text-sm font-medium text-white">Step 2 · Provision</h2>
+              <Badge tone="cyan">QR</Badge>
+            </div>
+            <div className="inline-block rounded-lg bg-white p-3 shadow-panel">
+              <img
+                className="max-w-[220px]"
+                alt="TOTP enrollment QR code"
+                src={`data:image/png;base64,${enrollment.qr_png_base64}`}
+              />
+            </div>
+            <div>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={() => setShowSecret((v) => !v)}
+              >
+                {showSecret ? "Hide manual key" : "Reveal manual key"}
+              </Button>
+              {showSecret ? (
+                <p className="mt-3 break-all rounded-md border border-line bg-ink px-3 py-2 font-mono text-xs text-slate-200">
+                  {enrollment.secret_base32}
+                </p>
+              ) : (
+                <p className="mt-2 text-xs text-slate-500">
+                  Manual key is hidden until you choose to reveal it.
+                </p>
+              )}
+            </div>
+            {(enrollment.warnings || []).length ? (
+              <ul className="list-disc space-y-1 pl-5 text-xs text-amber-100">
+                {enrollment.warnings.map((w) => (
+                  <li key={w}>{w}</li>
+                ))}
+              </ul>
             ) : null}
-            <ul className="mt-4 list-disc space-y-1 pl-5 text-xs text-amber-100">
-              {(enrollment.warnings || []).map((w) => (
-                <li key={w}>{w}</li>
-              ))}
-            </ul>
-          </div>
+            <p className="qk-mono-meta text-slate-500">
+              enrollment_id · {enrollment.enrollment_id}
+            </p>
+          </Panel>
 
-          <form
-            onSubmit={onVerify}
-            className="rounded-md border border-line bg-panel/40 p-4 space-y-3"
-          >
-            <h3 className="text-sm font-medium text-white">Verify OTP</h3>
-            <label className="block text-sm text-slate-300">
-              Current code
+          <Panel as="form" onSubmit={onVerify} className="space-y-4">
+            <h2 className="text-sm font-medium text-white">Step 3 · Verify</h2>
+            <Field
+              label="Current code"
+              htmlFor="totp-otp"
+              hint="Enter the 6-digit code from your authenticator app."
+            >
               <input
-                className="mt-1 w-full rounded-md border border-line bg-ink px-2 py-2 font-mono"
+                id="totp-otp"
+                className="qk-input font-mono text-2xl tracking-[0.35em] text-center"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 8))}
                 inputMode="numeric"
                 autoComplete="one-time-code"
                 minLength={6}
                 maxLength={8}
+                placeholder="••••••"
                 required
               />
-            </label>
-            <button
-              type="submit"
-              className="rounded-md border border-line px-4 py-2 text-sm text-white hover:bg-ink"
-              disabled={loading}
-            >
-              Verify
-            </button>
+            </Field>
+            <Button type="submit" variant="secondary" disabled={loading}>
+              {loading ? "Verifying…" : "Verify OTP"}
+            </Button>
             {verifyResult ? (
-              <p
+              <div
                 className={
-                  verifyResult.valid ? "text-sm text-emerald-300" : "text-sm text-rose-300"
+                  verifyResult.valid
+                    ? "rounded-md border border-emerald-500/30 bg-emerald-950/30 px-3 py-2 text-sm text-emerald-200"
+                    : "rounded-md border border-rose-500/30 bg-rose-950/30 px-3 py-2 text-sm text-rose-200"
                 }
+                role="status"
               >
                 {verifyResult.valid ? "Valid code" : "Invalid code"}
-              </p>
+              </div>
             ) : null}
-          </form>
+          </Panel>
         </div>
       ) : null}
     </section>
