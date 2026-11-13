@@ -10,6 +10,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black)](https://qubitkey.vercel.app)
 [![API](https://img.shields.io/badge/API-Render-46E3B7)](https://qubitkey-backend.onrender.com/api/health)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb)
 
 QubitKey explores how quantum computing can contribute to the future of digital security by combining **quantum random number generation (QRNG), entropy analysis, and practical digital authentication** in one interactive platform.
 
@@ -23,6 +24,7 @@ Built for the **AstraCode Qiskit Fall Fest 2026 Hackathon**, QubitKey translates
 |---|---|
 | **Web app** | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) |
 | **API** | [https://qubitkey-backend.onrender.com](https://qubitkey-backend.onrender.com) |
+| **Research notebook (Binder)** | [Launch on mybinder.org](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) |
 | **OpenAPI docs** | [https://qubitkey-backend.onrender.com/docs](https://qubitkey-backend.onrender.com/docs) |
 | **Health check** | [https://qubitkey-backend.onrender.com/api/health](https://qubitkey-backend.onrender.com/api/health) |
 | **Source** | [https://github.com/Isomkevin/QubitKey](https://github.com/Isomkevin/QubitKey) |

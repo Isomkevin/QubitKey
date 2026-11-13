@@ -2,14 +2,26 @@
 
 Standalone Qiskit experiments for QubitKey. These notebooks do **not** require the FastAPI backend or React frontend.
 
-**Interactive hosted demo (separate from this notebook):**
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Isomkevin/QubitKey/blob/main/notebooks/qrng_experiments.ipynb)
 
-| Surface | URL |
-|---|---|
-| App | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) |
-| API | [https://qubitkey-backend.onrender.com](https://qubitkey-backend.onrender.com) |
-| Docs | [`docs/README.md`](../docs/README.md) |
-| Demo script | [`docs/DEMO_SCRIPT.md`](../docs/DEMO_SCRIPT.md) |
+## Run online (recommended)
+
+| Option | URL | Notes |
+|---|---|---|
+| **Binder** (full JupyterLab) | [Launch notebook](https://mybinder.org/v2/gh/Isomkevin/QubitKey/main?labpath=notebooks%2Fqrng_experiments.ipynb) | Clones the whole repo (`qrng_lab.py` works). First build can take several minutes. |
+| **Google Colab** | [Open notebook](https://colab.research.google.com/github/Isomkevin/QubitKey/blob/main/notebooks/qrng_experiments.ipynb) | Faster start; add a cell that clones the repo so `qrng_lab.py` is available (see below). |
+| Web app demo | [https://qubitkey.vercel.app](https://qubitkey.vercel.app) | Interactive product UI — not the research notebook. |
+
+**Binder tip:** After the session opens, run all cells top-to-bottom. Do **not** paste IBM API tokens into public Binder/Colab sessions.
+
+**Colab companion cell** (run once if `qrng_lab` import fails):
+
+```python
+!git clone --depth 1 https://github.com/Isomkevin/QubitKey.git /content/QubitKey
+%cd /content/QubitKey/notebooks
+%pip install -q -r requirements.txt
+```
 
 ## Files
 
@@ -18,8 +30,9 @@ Standalone Qiskit experiments for QubitKey. These notebooks do **not** require t
 | `qrng_experiments.ipynb` | Full Hadamard QRNG research notebook |
 | `qrng_lab.py` | Circuit, conversion, Aer runner, and statistics helpers |
 | `requirements.txt` | Pinned notebook dependencies |
+| `../binder/` | mybinder.org environment (`runtime.txt` + `requirements.txt`) |
 
-## Quick start
+## Quick start (local optional)
 
 From the repository root (Python 3.11+):
 
